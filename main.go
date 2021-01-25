@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awesomeProject/go-douban-movie/parse"
+	"github.com/akaedison/go-douban-movie/parse"
 )
 
 func main() {
