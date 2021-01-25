@@ -19,6 +19,7 @@ var (
 
 type DoubanMovie struct {
 	Id       int    `gorm:"column:id;primaryKey;autoIncrement"`
+	Pic      string `gorm:"column:pic"`
 	Title    string `gorm:"column:title"`
 	Subtitle string `gorm:"column:subtitle"`
 	Other    string `gorm:"column:other"`
