@@ -6,5 +6,5 @@ import (
 
 func main() {
 	//table.CreateTable()
-	parse.getDouban("https://movie.douban.com/top250")
+	parse.GetDouban("https://movie.douban.com/top250")
 }
