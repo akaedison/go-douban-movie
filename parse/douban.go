@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"strings"
 )
 
 func getDoc(url string) *goquery.Document {
@@ -31,9 +32,30 @@ func GetDouban(url string) {
 	for i := 0; i < 10; i++ {
 		url := fmt.Sprintf("%v?start=%v", url, i*25)
 		doc := getDoc(url)
-		//doc.Find(".grid_view > li > .item").Each(func(i int, selection *goquery.Selection) {
-		//id := selection.Find(".pic em").Eq(0).Text()
-		fmt.Println(doc.Html())
-		//})
+		doc.Find(".grid_view > li > .item").Each(func(i int, selection *goquery.Selection) {
+			id := selection.Find(".pic em").Eq(0).Text()
+			pic, _ := selection.Find(".pic a img").Eq(0).Attr("src")
+			title1 := selection.Find(".info .hd a .title").Eq(0).Text()
+			title2 := selection.Find(".info .hd a .title").Eq(1).Text()
+			title := fmt.Sprintf("%v%v", title1, title2)
+			other := selection.Find(".info .hd a .other").Eq(0).Text()
+			desc := selection.Find(".info .bd p").Eq(0).Text()
+			descInfo := strings.Split(desc, "\n")
+			descDirector := descInfo[0]
+			movieDesc := strings.Split(descInfo[1], "/")
+			//year := strings.TrimSpace(movieDesc[0])
+			//area := strings.TrimSpace(movieDesc[1])
+			//tag := strings.TrimSpace(movieDesc[2])
+			fmt.Println(id)
+			fmt.Println(pic)
+			fmt.Println(title)
+			fmt.Println(other)
+			fmt.Println(desc)
+			fmt.Println(descDirector)
+			fmt.Println(movieDesc)
+			//fmt.Println(year)
+			//fmt.Println(area)
+			//fmt.Println(tag)
+		})
 	}
 }
